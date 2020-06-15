@@ -151,6 +151,7 @@
     "unblock": "Desbloquear",
     "block": "Bloquear",
     "time_table_header": "Data",
+    "date": "Data",
     "domain_name_table_header": "Nome do domínio",
     "type_table_header": "Tipo",
     "response_table_header": "Resposta",

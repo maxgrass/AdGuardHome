@@ -184,7 +184,7 @@
     "dns_test_not_ok_toast": "Server \"{{key}}\": konnte nicht verwendet werden, bitte überprüfen Sie die korrekte Schreibweise",
     "block": "Blockieren",
     "time_table_header": "Zeit",
-    "data": "Daten",
+    "date": "Datum",
     "domain_name_table_header": "Domainname",
     "domain_or_client": "Domain oder Client",
     "type_table_header": "Typ",

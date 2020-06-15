@@ -145,6 +145,7 @@
     "unblock": "Avblockera",
     "block": "Blockera",
     "time_table_header": "Tid",
+    "date": "Datum",
     "domain_name_table_header": "Domännamn",
     "type_table_header": "Typ",
     "response_table_header": "Svar",

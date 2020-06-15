@@ -294,7 +294,7 @@ const Table = (props) => {
 
                         const detailedData = {
                             time_table_header: formatTime(time, LONG_TIME_FORMAT),
-                            data: formatDateTime(time, DEFAULT_SHORT_DATE_FORMAT_OPTIONS),
+                            date: formatDateTime(time, DEFAULT_SHORT_DATE_FORMAT_OPTIONS),
                             encryption_status: status,
                             domain,
                             details: 'title',

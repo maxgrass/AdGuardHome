@@ -173,6 +173,7 @@
     "unblock": "Tillat",
     "block": "Blokker",
     "time_table_header": "Tidspunkt",
+    "date": "Dato",
     "domain_name_table_header": "Domenenavn",
     "type_table_header": "Type",
     "response_table_header": "Respons",
