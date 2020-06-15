@@ -53,6 +53,7 @@
     "dhcp_add_static_lease": "Ajoutez un bail statique",
     "dhcp_reset": "Voulez-vous vraiment réinitialiser votre configuration DHCP ?",
     "country": "Pays",
+    "city": "Ville",
     "delete_confirm": "Voulez-vous vraiment supprimer \"{{key}}\" ?",
     "form_enter_hostname": "Saisissez un nom d'hôte",
     "error_details": "Détails des erreurs",
