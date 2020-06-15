@@ -12,6 +12,7 @@ import {
     FILTERED_STATUS_TO_META_MAP,
     TABLE_DEFAULT_PAGE_SIZE,
     TRANSITION_TIMEOUT,
+    SCHEME_TO_PROTOCOL_MAP,
 } from '../../helpers/constants';
 import getDateCell from './Cells/getDateCell';
 import getDomainCell from './Cells/getDomainCell';
@@ -265,6 +266,8 @@ const Table = (props) => {
                             time,
                             tracker,
                             upstream,
+                            type,
+                            client_proto,
                         } = rowInfo.original;
 
                         const hasTracker = !!tracker;
@@ -278,6 +281,12 @@ const Table = (props) => {
 
                         const network = autoClient && autoClient.whois_info
                             && autoClient.whois_info.orgname;
+
+                        const city = autoClient && autoClient.whois_info
+                            && autoClient.whois_info.city;
+
+                        const source = autoClient && autoClient.source;
+
                         const formattedElapsedMs = formatElapsedMs(elapsedMs, t);
                         const isFiltered = checkFiltered(reason);
 
@@ -286,26 +295,37 @@ const Table = (props) => {
                             toggleBlocking(buttonType, domain);
                         };
 
-                        const source = tracker && tracker.sourceData && tracker.sourceData.name;
+                        const tracker_source = tracker && tracker.sourceData
+                            && tracker.sourceData.name;
 
                         const status = t((FILTERED_STATUS_TO_META_MAP[reason]
                             && FILTERED_STATUS_TO_META_MAP[reason].label) || reason);
                         const statusBlocked = <div className="bg--danger">{status}</div>;
+
+                        const protocol = t(SCHEME_TO_PROTOCOL_MAP[client_proto]) || '';
 
                         const detailedData = {
                             time_table_header: formatTime(time, LONG_TIME_FORMAT),
                             date: formatDateTime(time, DEFAULT_SHORT_DATE_FORMAT_OPTIONS),
                             encryption_status: status,
                             domain,
-                            details: 'title',
+                            type_table_header: type,
+                            protocol,
+                            known_tracker: hasTracker && 'title',
+                            table_name: hasTracker && tracker.name,
+                            category_label: hasTracker && tracker.category,
+                            tracker_source: hasTracker && tracker_source && <a href={`//${source}`} className="link--green">{tracker_source}</a>,
+                            response_details: 'title',
                             install_settings_dns: upstream,
                             elapsed: formattedElapsedMs,
-                            request_table_header: response && response.join('\n'),
+                            response_table_header: response && response.join('\n'),
                             client_details: 'title',
-                            name: info && info.name,
                             ip_address: client,
+                            name: info && info.name,
                             country,
+                            city,
                             network,
+                            source_label: source,
                             validated_with_dnssec: dnssec_enabled ? Boolean(answer_dnssec) : false,
                             [buttonType]: <div onClick={onToggleBlock}
                                                className="title--border bg--danger">{t(buttonType)}</div>,
@@ -313,18 +333,20 @@ const Table = (props) => {
 
                         const detailedDataBlocked = {
                             time_table_header: formatTime(time, LONG_TIME_FORMAT),
-                            data: formatDateTime(time, DEFAULT_SHORT_DATE_FORMAT_OPTIONS),
+                            date: formatDateTime(time, DEFAULT_SHORT_DATE_FORMAT_OPTIONS),
                             encryption_status: statusBlocked,
                             domain,
+                            type_table_header: type,
+                            protocol,
                             known_tracker: 'title',
                             table_name: hasTracker && tracker.name,
                             category_label: hasTracker && tracker.category,
-                            source_label: source
+                            source_label: hasTracker && source
                                 && <a href={`//${source}`} className="link--green">{source}</a>,
-                            details: 'title',
+                            response_details: 'title',
                             install_settings_dns: upstream,
                             elapsed: formattedElapsedMs,
-                            request_table_header: response && response.join('\n'),
+                            response_table_header: response && response.join('\n'),
                             [buttonType]: <div onClick={onToggleBlock}
                                                className="title--border">{t(buttonType)}</div>,
                         };

@@ -242,6 +242,7 @@
     "blocking_mode_null_ip": "Null IP: Respond with zero IP address (0.0.0.0 for A; :: for AAAA)",
     "blocking_mode_custom_ip": "Custom IP: Respond with a manually set IP address",
     "upstream_dns_client_desc": "If you keep this field empty, AdGuard Home will use the servers configured in the <0>DNS settings</0>.",
+    "tracker_source": "Tracker source",
     "source_label": "Source",
     "found_in_known_domain_db": "Found in the known domains database.",
     "category_label": "Category",
