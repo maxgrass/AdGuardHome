@@ -37,6 +37,7 @@ const getClientCell = ({
 
     const nameClass = classNames('w-90 o-hidden d-flex flex-column', {
         'mt-2': isDetailed && !name,
+        'white-space--nowrap': isDetailed,
     });
 
     const hintClass = classNames('icons mr-4 icon--small cursor--pointer icon--light-gray', {

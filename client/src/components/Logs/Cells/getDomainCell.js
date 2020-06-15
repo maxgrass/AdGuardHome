@@ -3,7 +3,12 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import getHintElement from './getHintElement';
-import { SCHEME_TO_PROTOCOL_MAP } from '../../../helpers/constants';
+import {
+    DEFAULT_SHORT_DATE_FORMAT_OPTIONS,
+    LONG_TIME_FORMAT,
+    SCHEME_TO_PROTOCOL_MAP,
+} from '../../../helpers/constants';
+import { formatDateTime, formatTime } from '../../../helpers/helpers';
 
 const getDomainCell = (props) => {
     const {
@@ -11,7 +16,7 @@ const getDomainCell = (props) => {
     } = props;
 
     const {
-        tracker, type, answer_dnssec, client_proto, domain,
+        tracker, type, answer_dnssec, client_proto, domain, time,
     } = row.original;
 
     const hasTracker = !!tracker;
@@ -44,6 +49,8 @@ const getDomainCell = (props) => {
     const ip = type ? `${t('type_table_header')}: ${type}` : '';
 
     const requestDetailsObj = {
+        time_table_header: formatTime(time, LONG_TIME_FORMAT),
+        date: formatDateTime(time, DEFAULT_SHORT_DATE_FORMAT_OPTIONS),
         domain,
         type_table_header: type,
         protocol,
