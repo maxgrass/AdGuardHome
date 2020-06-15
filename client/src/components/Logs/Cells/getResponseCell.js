@@ -29,10 +29,9 @@ const getFilterName = (filters, whitelistFilters, filterId, t) => {
 };
 
 const getResponseCell = (row, filtering, t, isDetailed) => {
-    const { value: responses, original } = row;
     const {
-        reason, filterId, rule, status, upstream, elapsedMs, domain,
-    } = original;
+        reason, filterId, rule, status, upstream, elapsedMs, domain, response,
+    } = row.original;
 
     const { filters, whitelistFilters } = filtering;
     const formattedElapsedMs = formatElapsedMs(elapsedMs, t);
@@ -42,13 +41,27 @@ const getResponseCell = (row, filtering, t, isDetailed) => {
     const boldStatusLabel = <span className="font-weight-bold">{statusLabel}</span>;
     const filter = getFilterName(filters, whitelistFilters, filterId, t);
 
+    const renderResponses = (responseArr) => {
+        if (responseArr.length === 0) {
+            return '';
+        }
+
+        return <div>{responseArr.map((response) => {
+            const className = classNames('white-space--nowrap', {
+                'white-space--normal': response.length > 100,
+            });
+
+            return <div key={response} className={className}>{`${response}\n`}</div>;
+        })}</div>;
+    };
+
     const FILTERED_STATUS_TO_FIELDS_MAP = {
         [FILTERED_STATUS.NOT_FILTERED_NOT_FOUND]: {
             domain,
             encryption_status: boldStatusLabel,
             install_settings_dns: upstream,
             elapsed: formattedElapsedMs,
-            response_table_header: responses && responses.join('\n'),
+            response_table_header: renderResponses(response),
         },
         [FILTERED_STATUS.FILTERED_BLOCKED_SERVICE]: {
             domain,
@@ -84,8 +97,8 @@ const getResponseCell = (row, filtering, t, isDetailed) => {
             {fields && getHintElement({
                 className: classNames('icons mr-4 icon--small cursor--pointer icon--light-gray', { 'my-3': isDetailed }),
                 columnClass: 'grid grid--limited',
-                tooltipClass: 'px-5 pb-5 pt-4 mw-75',
-                contentItemClass: 'text-pre text-truncate key-colon o-hidden',
+                tooltipClass: 'px-5 pb-5 pt-4 mw-75 custom-tooltip__response-details',
+                contentItemClass: 'text-truncate key-colon o-hidden',
                 dataTip: true,
                 xlinkHref: 'question',
                 title: 'response_details',

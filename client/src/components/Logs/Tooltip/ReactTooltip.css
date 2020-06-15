@@ -6,6 +6,14 @@
     pointer-events: auto !important;
 }
 
+.white-space--nowrap {
+    white-space: nowrap !important;
+}
+
+.white-space--normal {
+    white-space: normal !important;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(2, min-content);
