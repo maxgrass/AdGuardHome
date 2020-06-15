@@ -53,7 +53,6 @@
     "query_log": "Förfrågningslogg",
     "faq": "FAQ",
     "version": "version",
-    "address": "adress",
     "on": "PÅ",
     "off": "AV",
     "copyright": "Copyright",
@@ -356,5 +355,8 @@
     "netname": "Nätverksnamn",
     "descr": "Beskrivning",
     "whois": "Whois",
-    "filtering_rules_learn_more": "<0>Mer info</0> om att skapa dina egna blockeringslistor för värdar."
+    "filtering_rules_learn_more": "<0>Mer info</0> om att skapa dina egna blockeringslistor för värdar.",
+    "show_blocked_responses": "Blockerade",
+    "blocked_adult_websites": "Blockerade vuxensajter",
+    "blocked_threats": "Blockerade hot"
 }

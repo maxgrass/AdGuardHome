@@ -58,7 +58,6 @@
     "query_log": "Dnevnik zahteva",
     "faq": "ČPP",
     "version": "Verzija",
-    "address": "adresa",
     "on": "Uključeno",
     "off": "Isključeno",
     "copyright": "Autorska prava",
@@ -478,5 +477,8 @@
     "install_static_configure": "Otkrili smo da se koristi dinamička IP adresa — <0>{{ip}}</0>. Želite li da je koristite kao vašu statičku adresu?",
     "confirm_static_ip": "AdGuard Home će konfigurisati {{ip}} da bude vaša statička IP adresa. Želite li da nastavite?",
     "list_updated": "{{count}} lista ažurirana",
-    "list_updated_plural": "{{count}} lista ažurirano"
+    "list_updated_plural": "{{count}} lista ažurirano",
+    "show_blocked_responses": "Blokirano",
+    "blocked_adult_websites": "Blokiraj sajtove za odrasle",
+    "blocked_threats": "Blokiranih pretnji"
 }

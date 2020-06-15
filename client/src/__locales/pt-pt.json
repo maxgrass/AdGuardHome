@@ -58,7 +58,6 @@
     "query_log": "Registo de consultas",
     "faq": "Perguntas frequentes",
     "version": "Versão",
-    "address": "endereço",
     "on": "LIGADO",
     "off": "DESLIGADO",
     "copyright": "Copyright",
@@ -316,6 +315,7 @@
     "form_enter_id": "Inserir identificador",
     "form_add_id": "Adicionar identificador",
     "form_client_name": "Insira o nome do cliente",
+    "name": "Nome",
     "client_global_settings": "Usar configurações globais",
     "client_deleted": "Cliente \"{{key}}\" excluído com sucesso",
     "client_added": "Cliente \"{{key}}\" adicionado com sucesso",
@@ -412,6 +412,7 @@
     "location": "Localização",
     "orgname": "Nome da organização",
     "netname": "Nome da rede",
+    "network": "Network",
     "descr": "Descrição",
     "whois": "Whois",
     "filtering_rules_learn_more": "<0>Saiba mais</0>sobre como criar as suas próprias listas negras de servidores.",
@@ -419,5 +420,9 @@
     "try_again": "Tente novamente",
     "domain_desc": "Insere o nome do domínio para ser reescrito.",
     "example_rewrite_domain": "reescrever resposta apenas para este domínio.",
-    "example_rewrite_wildcard": "reescrever resposta para todos <0>example.org</0> sub-domínios."
+    "example_rewrite_wildcard": "reescrever resposta para todos <0>example.org</0> sub-domínios.",
+    "form_enter_host": "Insira o hostname",
+    "show_blocked_responses": "Bloqueado",
+    "show_whitelisted_responses": "Lista Branca",
+    "show_processed_responses": "Processado"
 }
