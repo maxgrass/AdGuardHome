@@ -86,7 +86,7 @@ const getResponseCell = (row, filtering, t, isDetailed) => {
 
     const fields = FILTERED_STATUS_TO_FIELDS_MAP[reason]
         ? Object.entries(FILTERED_STATUS_TO_FIELDS_MAP[reason])
-        : Object.entries(FILTERED_STATUS_TO_FIELDS_MAP.NOT_FILTERED_NOT_FOUND);
+        : Object.entries(FILTERED_STATUS_TO_FIELDS_MAP.NotFilteredNotFound);
 
     const detailedInfo = reason === FILTERED_STATUS.FILTERED_BLOCKED_SERVICE
     || reason === FILTERED_STATUS.FILTERED_BLACK_LIST
