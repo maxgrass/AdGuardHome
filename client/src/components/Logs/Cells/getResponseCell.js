@@ -106,9 +106,9 @@ const getResponseCell = (row, filtering, t, isDetailed) => {
                 place: 'bottom',
             })}
             <div className="text-truncate">
-                <div className="text-truncate">{statusLabel}</div>
+                <div className="text-truncate" title={statusLabel}>{statusLabel}</div>
                 {isDetailed && <div
-                    className="detailed-info d-none d-sm-block pt-1 text-truncate">{detailedInfo}</div>}
+                    className="detailed-info d-none d-sm-block pt-1 text-truncate" title={detailedInfo}>{detailedInfo}</div>}
             </div>
         </div>
     );

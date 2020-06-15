@@ -25,17 +25,19 @@ const getFormattedWhois = (whois, t) => {
 };
 
 export const formatClientCell = (row, t, isDetailed = false) => {
-    const { value, original: { info } } = row;
+    const { info, client } = row.original;
     let whoisContainer = '';
-    let nameContainer = value;
+    let nameContainer = client;
 
     if (info) {
         const { name, whois_info } = info;
 
         if (name) {
-            nameContainer = isDetailed ? <small>{value}</small>
-                : <div className="logs__text logs__text--wrap" title={`${name} (${value})`}>
-                    {name} <small>{`(${value})`}</small>
+            nameContainer = isDetailed ? <small title={client}>{client}</small>
+                : <div className="logs__text logs__text--wrap"
+                       title={`${name} (${client})`}>
+                    {name}
+                    <small>{`(${client})`}</small>
                 </div>;
         }
 
@@ -49,11 +51,11 @@ export const formatClientCell = (row, t, isDetailed = false) => {
     }
 
     return (
-        <div className="logs__text">
-            <Fragment>
+        <div className="logs__text" title={client}>
+            <>
                 {nameContainer}
                 {whoisContainer}
-            </Fragment>
+            </>
         </div>
     );
 };

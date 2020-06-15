@@ -91,7 +91,7 @@ const Table = (props) => {
             Header: t('time_table_header'),
             accessor: 'time',
             Cell: (row) => getDateCell(row, isDetailed),
-            minWidth: 62,
+            minWidth: 70,
             maxHeight: 60,
             headerClassName: 'logs__text',
         },

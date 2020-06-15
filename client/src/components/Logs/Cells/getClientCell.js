@@ -85,7 +85,8 @@ const getClientCell = ({
                 className={nameClass}>
                 <div data-tip={true} data-for={id}>{formatClientCell(row, t, isDetailed)}</div>
                 {isDetailed && name
-                && <div className="detailed-info d-none d-sm-block logs__text">{name}</div>}
+                && <div className="detailed-info d-none d-sm-block logs__text"
+                        title={name}>{name}</div>}
             </div>
             {renderBlockingButton(isFiltered, domain)}
         </div>

@@ -11,10 +11,8 @@ const getDomainCell = (props) => {
     } = props;
 
     const {
-        value, original: {
-            tracker, type, answer_dnssec, client_proto, domain,
-        },
-    } = row;
+        tracker, type, answer_dnssec, client_proto, domain,
+    } = row.original;
 
     const hasTracker = !!tracker;
 
@@ -85,16 +83,18 @@ const getDomainCell = (props) => {
         'px-2 d-flex justify-content-center flex-column': isDetailed,
     });
 
+    const details = [ip, protocol].filter(Boolean)
+        .join(', ');
+
     return (
-        <div className="logs__row o-hidden" title={value}>
+        <div className="logs__row o-hidden">
             {dnssec_enabled && dnssecHint}
             {trackerHint}
             <div className={valueClass}>
-                <div className="text-truncate">{value}</div>
-                {(ip || protocol) && isDetailed
-                && <div className="detailed-info d-none d-sm-block text-truncate">
-                    {`${ip}${ip && protocol && ', '}${protocol}`}
-                </div>}
+                <div className="text-truncate" title={domain}>{domain}</div>
+                {details && isDetailed
+                && <div className="detailed-info d-none d-sm-block text-truncate"
+                     title={details}>{details}</div>}
             </div>
         </div>
     );

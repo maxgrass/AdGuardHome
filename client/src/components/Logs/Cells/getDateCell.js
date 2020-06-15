@@ -7,22 +7,20 @@ import {
 } from '../../../helpers/constants';
 
 const getDateCell = (row, isDetailed) => {
-    const { value } = row;
+    const { time } = row.original;
 
-    if (!value) {
+    if (!time) {
         return '–';
     }
 
+    const formattedTime = formatTime(time, DEFAULT_TIME_FORMAT);
+    const formattedDate = formatDateTime(time, DEFAULT_SHORT_DATE_FORMAT_OPTIONS);
+
     return (
         <div className="logs__cell">
-            <div className="logs__time">
-                {formatTime(value, DEFAULT_TIME_FORMAT)}
-            </div>
-            {isDetailed
-            && <div className="detailed-info d-none d-sm-block text-truncate">
-                {formatDateTime(value, DEFAULT_SHORT_DATE_FORMAT_OPTIONS)}
-            </div>
-            }
+            <div className="logs__time" title={formattedTime}>{formattedTime}</div>
+            {isDetailed && <div className="detailed-info d-none d-sm-block text-truncate"
+                                title={formattedDate}>{formattedDate}</div>}
         </div>
     );
 };
