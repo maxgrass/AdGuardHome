@@ -193,6 +193,7 @@
     "domain_or_client": "Domain or client",
     "type_table_header": "Type",
     "response_table_header": "Response",
+    "response_code": "Response code",
     "client_table_header": "Client",
     "empty_response_status": "Empty",
     "show_all_filter_type": "Show all",

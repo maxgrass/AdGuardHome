@@ -26,7 +26,7 @@ import {
     formatTime,
 
 } from '../../helpers/helpers';
-
+import Loading from '../ui/Loading';
 
 const Table = (props) => {
     const {
@@ -227,7 +227,11 @@ const Table = (props) => {
             onPageChange={changePage}
             className={tableClass}
             defaultPageSize={TABLE_DEFAULT_PAGE_SIZE}
-            loadingText={t('loading_table_status')}
+            loadingText={
+                <div className="loader__container">
+                    <Loading />
+                    <h1 className="loader__text">{t('loading_table_status')}</h1>
+                </div>}
             rowsText={t('rows_table_footer_text')}
             noDataText={!processingGetLogs
             && <label className="logs__text logs__text--bold">{t('nothing_found')}</label>}

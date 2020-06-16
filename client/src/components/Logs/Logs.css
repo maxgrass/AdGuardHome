@@ -278,11 +278,7 @@
     padding: 0 1.5rem;
 }
 
-.logs__table .rt-tr-group.white + .rt-tr-group.white .rt-tr:before,
-.logs__table .rt-tr-group.green + .rt-tr-group.green .rt-tr:before,
-.logs__table .rt-tr-group.blue + .rt-tr-group.blue .rt-tr:before,
-.logs__table .rt-tr-group.yellow + .rt-tr-group.yellow .rt-tr:before,
-.logs__table .rt-tr-group.red + .rt-tr-group.red .rt-tr:before {
+.logs__table .rt-tr-group:not(:first-child) .rt-tr:before {
     content: "";
     position: absolute;
     left: 1.5rem;
@@ -547,4 +543,12 @@
     .field__select {
         margin-top: 1.5rem;
     }
+}
+
+.loader__container {
+    transform: translateY(-20rem);
+}
+
+.loader__text {
+    transform: translateY(3rem);
 }

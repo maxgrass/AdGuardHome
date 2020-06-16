@@ -61,6 +61,7 @@ const getResponseCell = (row, filtering, t, isDetailed) => {
             encryption_status: boldStatusLabel,
             install_settings_dns: upstream,
             elapsed: formattedElapsedMs,
+            response_code: status,
             response_table_header: renderResponses(response),
         },
         [FILTERED_STATUS.FILTERED_BLOCKED_SERVICE]: {
@@ -68,19 +69,21 @@ const getResponseCell = (row, filtering, t, isDetailed) => {
             encryption_status: boldStatusLabel,
             filter,
             rule_label: rule,
-            response_table_header: status,
+            response_code: status,
         },
         [FILTERED_STATUS.FILTERED_SAFE_SEARCH]: {
             domain,
             encryption_status: boldStatusLabel,
             install_settings_dns: upstream,
             elapsed: formattedElapsedMs,
+            response_code: status,
         },
         [FILTERED_STATUS.FILTERED_BLACK_LIST]: {
             domain,
             encryption_status: boldStatusLabel,
             install_settings_dns: upstream,
             elapsed: formattedElapsedMs,
+            response_code: status,
         },
     };
 
