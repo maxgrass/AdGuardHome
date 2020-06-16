@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation, Trans } from 'react-i18next';
 import ReactTable from 'react-table';
@@ -12,7 +12,7 @@ import {
     FILTERED_STATUS_TO_META_MAP,
     TABLE_DEFAULT_PAGE_SIZE,
     TRANSITION_TIMEOUT,
-    SCHEME_TO_PROTOCOL_MAP,
+    SCHEME_TO_PROTOCOL_MAP, TABLE_CHUNK_RENDER_INTERVAL,
 } from '../../helpers/constants';
 import getDateCell from './Cells/getDateCell';
 import getDomainCell from './Cells/getDomainCell';
@@ -196,18 +196,31 @@ const Table = (props) => {
         }
     };
 
+    const [tableSize, setTableSize] = useState(TABLE_DEFAULT_PAGE_SIZE / 4);
+
     const changePage = (page) => {
-        setIsLoading(true);
         setLogsPage(page);
         setLogsPagination({
             page,
             pageSize: TABLE_DEFAULT_PAGE_SIZE,
         });
+        setTableSize(TABLE_DEFAULT_PAGE_SIZE / 4);
     };
 
     const tableClass = classNames('logs__table', {
         'logs__table--detailed': isDetailed,
     });
+
+    useEffect(() => {
+        const intervalId = setInterval(() => setTableSize((tableSize) => {
+            if (tableSize < TABLE_DEFAULT_PAGE_SIZE) {
+                return tableSize + TABLE_DEFAULT_PAGE_SIZE / 4;
+            }
+            return TABLE_DEFAULT_PAGE_SIZE;
+        }), TABLE_CHUNK_RENDER_INTERVAL);
+
+        return () => clearInterval(intervalId);
+    }, [TABLE_DEFAULT_PAGE_SIZE]);
 
     return (
         <ReactTable
@@ -219,7 +232,7 @@ const Table = (props) => {
             filterable={false}
             sortable={false}
             resizable={false}
-            data={logs || []}
+            data={logs.slice(0, tableSize) || []}
             loading={isLoading}
             showPageJump={false}
             showPageSizeOptions={false}

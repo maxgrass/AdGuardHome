@@ -338,6 +338,8 @@ export const TABLE_FIRST_PAGE = 0;
 
 export const LEASES_TABLE_DEFAULT_PAGE_SIZE = 20;
 
+export const TABLE_CHUNK_RENDER_INTERVAL = 250;
+
 export const FILTERED_STATUS = {
     FILTERED_BLACK_LIST: 'FilteredBlackList',
     NOT_FILTERED_WHITE_LIST: 'NotFilteredWhiteList',
