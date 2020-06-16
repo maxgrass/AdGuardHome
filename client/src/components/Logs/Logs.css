@@ -346,13 +346,17 @@
     padding: 2.5rem 0 2.5rem !important;
 }
 
-.custom-pagination button {
+.custom-pagination .-btn {
     --side-size: 2rem;
     background-color: transparent !important;
     border: 1px solid var(--gray-d8) !important;
     border-radius: 4px !important;
     width: var(--side-size) !important;
     height: var(--side-size) !important;
+}
+
+.custom-pagination .-btn:enabled:hover {
+    background-color: var(--gray-f3) !important;
 }
 
 .custom-pagination .-previous {
@@ -545,7 +549,7 @@
     }
 }
 
-.loading__container > .-loading-inner{
+.loading__container > .-loading-inner {
     top: 10rem !important;
     bottom: initial !important;
 }

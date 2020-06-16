@@ -317,33 +317,22 @@ const Icons = () => (
             <path d="M14,14 L19,19" id="Line"></path>
         </symbol>
 
-        <symbol id="arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        <symbol id="arrow-left" viewBox="0 0 24 24" stroke="currentColor"
                 strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
-                <g transform="translate(-869 -940)" fill="none" fillRule="evenodd">
-                    <path fill="#F4F7FB" d="M0 0h1920v1170H0z" />
-                    <rect fill="#FFF" x="392" y="212" width="1136" height="800" rx="8" />
-                    <g transform="translate(865 936)">
-                        <rect stroke="#D8D8D8" width="32" height="32" rx="4" />
-                        <path d="M18 10l-6 6 6 6" stroke="#888" strokeLinecap="round"
-                              strokeWidth="1.5" />
-                    </g>
-                </g>
+            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
+                 xmlns="http://www.w3.org/2000/svg">
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 6l-6 6 6 6" stroke="#888" strokeWidth="1.5" fill="none"
+                          fillRule="evenodd" strokeLinecap="round" />
+                </svg>
             </svg>
         </symbol>
 
-        <symbol id="arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        <symbol id="arrow-right" viewBox="0 0 24 24" stroke="currentColor"
                 strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
-                <g transform="translate(-1027 -940)" fill="none" fillRule="evenodd">
-                    <path fill="#F4F7FB" d="M0 0h1920v1170H0z" />
-                    <rect fill="#FFF" x="392" y="212" width="1136" height="800" rx="8" />
-                    <g transform="translate(1023 936)">
-                        <path d="M14 10l6 6-6 6" stroke="#888" strokeLinecap="round"
-                              strokeWidth="1.5" />
-                        <rect stroke="#D8D8D8" width="32" height="32" rx="4" />
-                    </g>
-                </g>
+                <path d="M10 6l6 6-6 6" stroke="#888" strokeWidth="1.5" fill="none"
+                      fillRule="evenodd" strokeLinecap="round" />
             </svg>
         </symbol>
     </svg>
