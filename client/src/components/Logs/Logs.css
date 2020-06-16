@@ -545,10 +545,11 @@
     }
 }
 
-.loader__container {
-    transform: translateY(-20rem);
+.loading__container > .-loading-inner{
+    top: 10rem !important;
+    bottom: initial !important;
 }
 
-.loader__text {
+.loading__text {
     transform: translateY(3rem);
 }

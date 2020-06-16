@@ -228,10 +228,11 @@ const Table = (props) => {
             className={tableClass}
             defaultPageSize={TABLE_DEFAULT_PAGE_SIZE}
             loadingText={
-                <div className="loader__container">
+                <>
                     <Loading />
-                    <h1 className="loader__text">{t('loading_table_status')}</h1>
-                </div>}
+                    <h6 className="loading__text">{t('loading_table_status')}</h6>
+                </>}
+            getLoadingProps={() => ({ className: 'loading__container' })}
             rowsText={t('rows_table_footer_text')}
             noDataText={!processingGetLogs
             && <label className="logs__text logs__text--bold">{t('nothing_found')}</label>}
