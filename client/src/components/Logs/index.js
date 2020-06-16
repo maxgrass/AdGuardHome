@@ -84,6 +84,9 @@ const Logs = (props) => {
     const mediaQuery = window.matchMedia(`(max-width: ${smallScreenSize}px)`);
     const mediaQueryHandler = (e) => {
         setIsSmallScreen(e.matches);
+        if (e.matches) {
+            toggleDetailedLogs(false);
+        }
     };
 
     useEffect(() => {

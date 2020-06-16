@@ -34,7 +34,7 @@ export const formatClientCell = (row, t, isDetailed = false) => {
 
         if (name) {
             nameContainer = isDetailed ? <small title={client}>{client}</small>
-                : <div className="logs__text logs__text--wrap"
+                : <div className="logs__text logs__text--nowrap"
                        title={`${name} (${client})`}>
                     {name}
                     <small>{`(${client})`}</small>

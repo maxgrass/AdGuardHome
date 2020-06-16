@@ -63,6 +63,11 @@
     white-space: normal;
 }
 
+.logs__text--nowrap {
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
 .logs__text--whois {
     line-height: 1.2;
 }

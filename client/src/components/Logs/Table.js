@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import ReactTable from 'react-table';
 import classNames from 'classnames';
 import endsWith from 'lodash/endsWith';
@@ -26,6 +26,7 @@ import {
     formatTime,
 
 } from '../../helpers/helpers';
+
 
 const Table = (props) => {
     const {
@@ -147,15 +148,19 @@ const Table = (props) => {
                     {<span>
                         <svg
                             className={`icons icon--small icon--active mr-2 cursor--pointer ${plainSelected}`}
-                            onClick={() => toggleDetailedLogs(false)}>
+                            onClick={() => toggleDetailedLogs(false)}
+                        >
+                            <title><Trans>compact</Trans></title>
                             <use xlinkHref='#list' />
                         </svg>
                     <svg
                         className={`icons icon--small icon--active cursor--pointer ${detailedSelected}`}
-                        onClick={() => toggleDetailedLogs(true)}>
+                        onClick={() => toggleDetailedLogs(true)}
+                    >
+                        <title><Trans>default</Trans></title>
                         <use xlinkHref='#detailed_list' />
                     </svg>
-                    </span>}
+                        </span>}
                 </div>;
             },
             accessor: 'client',
@@ -225,7 +230,7 @@ const Table = (props) => {
             loadingText={t('loading_table_status')}
             rowsText={t('rows_table_footer_text')}
             noDataText={!processingGetLogs
-            && <label className="logs__text logs__text--bold">{t('empty_log')}</label>}
+            && <label className="logs__text logs__text--bold">{t('nothing_found')}</label>}
             pageText=''
             ofText=''
             showPagination={logs.length > 0}
@@ -233,10 +238,12 @@ const Table = (props) => {
             getTbodyProps={() => ({ className: 'd-block' })}
             previousText={
                 <svg className="icons icon--small icon--gray w-100 h-100 cursor--pointer">
+                    <title><Trans>previous_btn</Trans></title>
                     <use xlinkHref="#arrow-left" />
                 </svg>}
             nextText={
                 <svg className="icons icon--small icon--gray w-100 h-100 cursor--pointer">
+                    <title><Trans>next_btn</Trans></title>
                     <use xlinkHref="#arrow-right" />
                 </svg>}
             renderTotalPagesCount={() => false}
@@ -314,7 +321,8 @@ const Table = (props) => {
                             known_tracker: hasTracker && 'title',
                             table_name: hasTracker && tracker.name,
                             category_label: hasTracker && tracker.category,
-                            tracker_source: hasTracker && tracker_source && <a href={`//${source}`} className="link--green">{tracker_source}</a>,
+                            tracker_source: hasTracker && tracker_source && <a href={`//${source}`}
+                                                                               className="link--green">{tracker_source}</a>,
                             response_details: 'title',
                             install_settings_dns: upstream,
                             elapsed: formattedElapsedMs,

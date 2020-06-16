@@ -62,14 +62,19 @@ const getDomainCell = (props) => {
         source_label: source && <a href={`//${source}`} className="link--green">{source}</a>,
     };
 
-    const renderGrid = (content) => <div key={nanoid()}
-                                         className='text-pre text-truncate key-colon o-hidden'>{typeof content === 'string' ? t(content) : content}</div>;
+    const renderGrid = (content) => {
+        const preparedContent = typeof content === 'string' ? t(content) : content;
+        const className = classNames('text-truncate key-colon o-hidden', {
+            'word-break--break-all white-space--normal': preparedContent.length > 100,
+        });
+        return <div key={nanoid()} className={className}>{preparedContent}</div>;
+    };
 
     const getGrid = (contentObj, title, className) => [
         <div key={title}
              className={classNames('pb-2 grid--title', className)}>{t(title)}</div>,
         <div key={nanoid()}
-             className="grid">{React.Children.map(Object.entries(contentObj), renderGrid)}</div>,
+             className="grid grid--limited">{React.Children.map(Object.entries(contentObj), renderGrid)}</div>,
     ];
 
     const requestDetails = getGrid(requestDetailsObj, 'request_details');
@@ -78,7 +83,7 @@ const getDomainCell = (props) => {
 
     const trackerHint = getHintElement({
         className: privacyIconClass,
-        tooltipClass: 'pt-4 pb-5 px-5',
+        tooltipClass: 'pt-4 pb-5 px-5 mw-75',
         dataTip: true,
         xlinkHref: 'privacy',
         contentItemClass: 'key-colon',
@@ -101,7 +106,7 @@ const getDomainCell = (props) => {
                 <div className="text-truncate" title={domain}>{domain}</div>
                 {details && isDetailed
                 && <div className="detailed-info d-none d-sm-block text-truncate"
-                     title={details}>{details}</div>}
+                        title={details}>{details}</div>}
             </div>
         </div>
     );
