@@ -2,13 +2,11 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
 import Modal from 'react-modal';
-import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import {
     BLOCK_ACTIONS, smallScreenSize,
     TABLE_DEFAULT_PAGE_SIZE,
     TABLE_FIRST_PAGE,
-    TRANSITION_TIMEOUT,
 } from '../../helpers/constants';
 import Loading from '../ui/Loading';
 import Filters from './Filters';
@@ -39,7 +37,7 @@ export const processContent = (data, buttonType) => Object.entries(data)
             keyClass = '';
         }
 
-        return isHidden ? null : <Fragment key={nanoid()}>
+        return isHidden ? null : <Fragment key={key}>
             <div
                 className={`key__${key} ${keyClass} ${(isBoolean && value === true) ? 'font-weight-bold' : ''}`}>
                 <Trans>{isButton ? value : key}</Trans>
@@ -57,7 +55,7 @@ const Logs = (props) => {
     const [detailedDataCurrent, setDetailedDataCurrent] = useState({});
     const [buttonType, setButtonType] = useState(BLOCK_ACTIONS.BLOCK);
     const [isModalOpened, setModalOpened] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const {
         filtering,
@@ -110,11 +108,13 @@ const Logs = (props) => {
 
     useEffect(() => {
         (async () => {
+            setIsLoading(true);
             dispatch(setLogsPage(TABLE_FIRST_PAGE));
             dispatch(getFilteringStatus());
             dispatch(getClients());
             try {
-                await Promise.all([getLogs(...INITIAL_REQUEST_DATA),
+                await Promise.all([
+                    getLogs(...INITIAL_REQUEST_DATA),
                     dispatch(getLogsConfig()),
                     dispatch(getDnsConfig()),
                 ]);
@@ -125,11 +125,14 @@ const Logs = (props) => {
             }
         })();
     }, []);
-    const refreshLogs = () => {
+
+    const refreshLogs = async () => {
         setIsLoading(true);
-        dispatch(setLogsPage(TABLE_FIRST_PAGE));
-        getLogs(...INITIAL_REQUEST_DATA);
-        setTimeout(() => setIsLoading(false), TRANSITION_TIMEOUT);
+        await Promise.all([
+            dispatch(setLogsPage(TABLE_FIRST_PAGE)),
+            getLogs(...INITIAL_REQUEST_DATA),
+        ]);
+        setIsLoading(false);
     };
 
     return (

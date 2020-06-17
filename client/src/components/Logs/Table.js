@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation, Trans } from 'react-i18next';
 import ReactTable from 'react-table';
@@ -11,7 +11,6 @@ import {
     LONG_TIME_FORMAT,
     FILTERED_STATUS_TO_META_MAP,
     TABLE_DEFAULT_PAGE_SIZE,
-    TRANSITION_TIMEOUT,
     SCHEME_TO_PROTOCOL_MAP,
 } from '../../helpers/constants';
 import getDateCell from './Cells/getDateCell';
@@ -48,10 +47,6 @@ const Table = (props) => {
     } = props;
 
     const [t] = useTranslation();
-
-    useEffect(() => {
-        setTimeout(() => setIsLoading(false), TRANSITION_TIMEOUT);
-    }, [page]);
 
     const toggleBlocking = (type, domain) => {
         const {
@@ -186,23 +181,21 @@ const Table = (props) => {
         },
     ];
 
-    const fetchData = (state) => {
-        const { pages } = state;
-        const { oldest, page, getLogs } = props;
+    const changePage = async (page) => {
+        setIsLoading(true);
+
+        const { oldest, getLogs, pages } = props;
         const isLastPage = pages && (page + 1 === pages);
 
-        if (isLastPage) {
-            getLogs(oldest, page);
-        }
-    };
+        await Promise.all([
+            setLogsPage(page),
+            setLogsPagination({
+                page,
+                pageSize: TABLE_DEFAULT_PAGE_SIZE,
+            }),
+        ].concat(isLastPage ? getLogs(oldest, page) : []));
 
-    const changePage = (page) => {
-        setIsLoading(true);
-        setLogsPage(page);
-        setLogsPagination({
-            page,
-            pageSize: TABLE_DEFAULT_PAGE_SIZE,
-        });
+        setIsLoading(false);
     };
 
     const tableClass = classNames('logs__table', {
@@ -219,11 +212,10 @@ const Table = (props) => {
             filterable={false}
             sortable={false}
             resizable={false}
-            data={logs || []}
+            data={logs}
             loading={isLoading}
             showPageJump={false}
             showPageSizeOptions={false}
-            onFetchData={fetchData}
             onPageChange={changePage}
             className={tableClass}
             defaultPageSize={TABLE_DEFAULT_PAGE_SIZE}
@@ -231,7 +223,8 @@ const Table = (props) => {
                 <>
                     <Loading />
                     <h6 className="loading__text">{t('loading_table_status')}</h6>
-                </>}
+                </>
+            }
             getLoadingProps={() => ({ className: 'loading__container' })}
             rowsText={t('rows_table_footer_text')}
             noDataText={!processingGetLogs

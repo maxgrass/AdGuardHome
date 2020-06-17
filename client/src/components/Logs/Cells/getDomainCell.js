@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
 import getHintElement from './getHintElement';
 import {
     DEFAULT_SHORT_DATE_FORMAT_OPTIONS,
@@ -62,19 +61,17 @@ const getDomainCell = (props) => {
         source_label: source && <a href={`//${source}`} className="link--green">{source}</a>,
     };
 
-    const renderGrid = (content) => {
+    const renderGrid = (content, idx) => {
         const preparedContent = typeof content === 'string' ? t(content) : content;
         const className = classNames('text-truncate key-colon o-hidden', {
             'word-break--break-all white-space--normal': preparedContent.length > 100,
         });
-        return <div key={nanoid()} className={className}>{preparedContent}</div>;
+        return <div key={idx} className={className}>{preparedContent}</div>;
     };
 
     const getGrid = (contentObj, title, className) => [
-        <div key={title}
-             className={classNames('pb-2 grid--title', className)}>{t(title)}</div>,
-        <div key={nanoid()}
-             className="grid grid--limited">{React.Children.map(Object.entries(contentObj), renderGrid)}</div>,
+        <div key={title} className={classNames('pb-2 grid--title', className)}>{t(title)}</div>,
+        <div key={`${title}-1`} className="grid grid--limited">{React.Children.map(Object.entries(contentObj), renderGrid)}</div>,
     ];
 
     const requestDetails = getGrid(requestDetailsObj, 'request_details');

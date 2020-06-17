@@ -54,7 +54,6 @@ export const EMPTY_DATE = '0001-01-01T00:00:00Z';
 
 export const DEBOUNCE_TIMEOUT = 300;
 export const DEBOUNCE_FILTER_TIMEOUT = 500;
-export const TRANSITION_TIMEOUT = 250;
 export const CHECK_TIMEOUT = 1000;
 export const SUCCESS_TOAST_TIMEOUT = 5000;
 export const FAILURE_TOAST_TIMEOUT = 30000;
@@ -332,7 +331,7 @@ export const DEFAULT_LOGS_FILTER = {
 
 export const DEFAULT_LANGUAGE = 'en';
 
-export const TABLE_DEFAULT_PAGE_SIZE = 100;
+export const TABLE_DEFAULT_PAGE_SIZE = 50;
 
 export const TABLE_FIRST_PAGE = 0;
 
