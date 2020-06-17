@@ -29,7 +29,7 @@ func TestAutoHostsResolution(t *testing.T) {
 	defer func() { _ = os.Remove(f.Name()) }()
 	defer f.Close()
 
-	_, _ = f.WriteString("  127.0.0.1   host  localhost  \n")
+	_, _ = f.WriteString("  127.0.0.1   host  localhost # comment \n")
 	_, _ = f.WriteString("  ::1   localhost  \n")
 
 	ah.Init(f.Name())
@@ -45,6 +45,10 @@ func TestAutoHostsResolution(t *testing.T) {
 
 	// Unknown host
 	ips = ah.Process("newhost", dns.TypeA)
+	assert.Nil(t, ips)
+
+	// Unknown host (comment)
+	ips = ah.Process("comment", dns.TypeA)
 	assert.Nil(t, ips)
 
 	// Test hosts file

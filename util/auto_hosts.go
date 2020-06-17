@@ -169,7 +169,7 @@ func (a *AutoHosts) load(table map[string][]net.IP, tableRev map[string]string, 
 		}
 		for i := 1; i != len(fields); i++ {
 			host := fields[i]
-			if len(host) == 0 {
+			if len(host) == 0 || host[0] == '#' {
 				break
 			}
 			a.updateTable(table, host, ipAddr)
