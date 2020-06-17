@@ -17,6 +17,7 @@ import { getFilteringStatus } from '../../actions/filtering';
 import { getClients } from '../../actions';
 import { getDnsConfig } from '../../actions/dnsConfig';
 import { getLogsConfig } from '../../actions/queryLogs';
+import { addSuccessToast } from '../../actions/toasts';
 
 const INITIAL_REQUEST = true;
 const INITIAL_REQUEST_DATA = ['', TABLE_FIRST_PAGE, INITIAL_REQUEST];
@@ -132,6 +133,7 @@ const Logs = (props) => {
             dispatch(setLogsPage(TABLE_FIRST_PAGE)),
             getLogs(...INITIAL_REQUEST_DATA),
         ]);
+        dispatch(addSuccessToast('query_log_updated'));
         setIsLoading(false);
     };
 

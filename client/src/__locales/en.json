@@ -212,6 +212,7 @@
     "query_log_filtered": "Filtered by {{filter}}",
     "query_log_confirm_clear": "Are you sure you want to clear the entire query log?",
     "query_log_cleared": "The query log has been successfully cleared",
+    "query_log_updated": "The query log has been successfully updated",
     "query_log_clear": "Clear query logs",
     "query_log_retention": "Query logs retention",
     "query_log_enable": "Enable log",

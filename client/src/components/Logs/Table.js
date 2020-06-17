@@ -212,7 +212,7 @@ const Table = (props) => {
             filterable={false}
             sortable={false}
             resizable={false}
-            data={logs}
+            data={logs || []}
             loading={isLoading}
             showPageJump={false}
             showPageSizeOptions={false}
