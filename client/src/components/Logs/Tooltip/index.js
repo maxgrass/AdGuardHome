@@ -26,7 +26,7 @@ class Tooltip extends React.Component {
                 scrollHide={scrollHide}
                 trigger={trigger}
                 overridePosition={overridePosition}
-                globalEventOff="click"
+                globalEventOff="click touchend"
                 clickable
             >
                 {children}
